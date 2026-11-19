@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rhokart - B2B eCom</title>
+    <link rel="icon" type="image/x-icon" href="https://rhokartwebsite.s3.ap-south-1.amazonaws.com/asset/fab_icon.jpg">
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Theme color variables */
+        :root {
+            --primary-color: #1f8505;
+            --primary-dark: #176303;
+            --primary-light: #2aa507;
+            --white: #ffffff;
+            --light-gray: #f5f5f5;
+            --dark-gray: #333333;
+        }
+
+        /* Header styles */
+        header {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        .logo {
+            height: 50px;
+            margin-right: 10px;
+        }
+
+        .site-name {
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-align: left;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+
+        nav ul li a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s, background-color 0.3s;
+            display: flex;
+            align-items: center;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary-color);
+            background-color: var(--white);
+        }
+
+        nav ul li a i {
+            margin-right: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        /* Main content styles */
+        main {
+            flex: 1;
+        }
+
+        .hero {
+            background-color: #F5F5F5;
+            color: #242323;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+
+        .app-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .app-button {
+            display: flex;
+            align-items: center;
+            background-color: var(--dark-gray);
+            color: var(--white);
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .app-button:hover {
+            background-color: #000;
+        }
+
+        .app-button i {
+            font-size: 1.8rem;
+            margin-right: 10px;
+        }
+
+        .app-button .button-text {
+            text-align: left;
+        }
+
+        .app-button .small-text {
+            font-size: 0.7rem;
+            display: block;
+        }
+
+        .app-button .big-text {
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+
+        .features {
+            background-color: #f5f5f5;
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .features-heading {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2rem;
+            color: var(--primary-color);
+        }
+
+        .features-grid {
+            display: grid;  
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background-color: var(--light-gray);
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-card i {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        /* Footer styles */
+        footer {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 2rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid var(--primary-light);
+            padding-bottom: 0.5rem;
+        }
+
+        .footer-section p, .footer-section address {
+            margin-bottom: 0.8rem;
+            font-style: normal;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section ul li a {
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--light-gray);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: var(--white);
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--light-gray);
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--primary-light);
+        }
+        .content-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .form-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        h1 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            margin-bottom: 20px;
+        }
+        
+        .warning-box {
+            background-color: var(--light-green);
+            border-left: 4px solid var(--primary-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="tel"]:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(29, 133, 5, 0.2);
+        }
+        
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+        
+        .checkbox-group input {
+            margin-top: 5px;
+            margin-right: 10px;
+        }
+        
+        button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.2s;
+        }
+        
+        button:hover {
+            background-color: #47aa2b;
+        }
+        
+        button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        
+        .status-message {
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 20px;
+            display: none;
+        }
+        
+        .success {
+            background-color: var(--light-green);
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+        }
+        
+        .error {
+            background-color: #ffebee;
+            color: var(--error-color);
+            border: 1px solid var(--error-color);
+        }
+        
+        .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+            margin-right: 10px;
+            display: none;
+        }
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .logo-container {
+                margin-bottom: 1rem;
+                justify-content: flex-start;
+            }
+
+            nav ul {
+                justify-content: center;
+            }
+
+            nav ul li {
+                margin: 0 0.75rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .app-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo-container">
+                <a href="index.html">
+                <img src="https://rhokartwebsite.s3.ap-south-1.amazonaws.com/asset/rhokart-web-logo-final.png" alt="RhoSelect Logo" class="logo">
+            </a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="https://www.seller.rhokart.com/" target="_blank"><i class="fas fa-store"></i> Sell on Rhokart</a></li>
+                    <li><a href="customerlogin.html"><i class="fas fa-user"></i> Customer Login</a></li>
+                    
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main style="background-color: #f5f5f5;">
+        <!-- Hero Section -->
+        <div class="content-container">
+            <div class="form-header">
+                <h1>Delete Your Account</h1>
+                <p>We're sorry to see you go. Please confirm your details below.</p>
+            </div>
+            
+            <div class="card">
+                <div class="warning-box">
+                    <strong>Warning:</strong> This action cannot be undone. All your data will be permanently deleted.
+                </div>
+                
+                <form id="deleteAccountForm">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="mobile">Mobile Number</label>
+                        <input type="tel" id="mobile" name="mobile" required>
+                    </div>
+                    
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="confirmation" name="confirmation" required>
+                        <label for="confirmation">
+                            I understand that this action is permanent and cannot be reversed. My account will be deleted permanently, and I cannot access my Rhokart account anymore.
+                        </label>
+                    </div>
+                    
+                    <button type="submit" id="submitButton">
+                        <span class="spinner" id="spinner"></span>
+                        <span id="buttonText">Delete My Account</span>
+                    </button>
+                </form>
+                
+                <div id="statusMessage" class="status-message"></div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="https://rhokartwebsite.s3.ap-south-1.amazonaws.com/policy.html" target="_blank">Privacy Policy</a></li>
+                    <li><a href="https://rhokartwebsite.s3.ap-south-1.amazonaws.com/tc.html" target="_blank">Terms and Conditions</a></li>
+                    <li><a>Careers</a></li>
+                    <li><a href="rhopartner.html">Become a RHOPARTNER</a></li>
+                    <li><a href="deleteaccount.html" target="_blank">Delete user account</a></li>
+                    <li><a href="deletedata.html" target="_blank">Delete user data</a></li>
+
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p><i class="fas fa-phone"></i> +91 833 186 2438</p>
+                <p><i class="fas fa-envelope"></i> support@rhoselect.com</p>
+            </div>
+            <div class="footer-section">
+                <h3>Registered Address</h3>
+                <address>
+                    Rhoselect Private Limited.<br>
+                    No. 235, 13th Cross, Hoysala Nagar, 2nd Stage,<br>
+                    Indiranagar, Bangalore- 560038,<br>
+                    Karnataka, India
+                </address>
+                <p>CIN: U46901KA2025PTC199258</p>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; All rights reserved. Rhoselect Private Limited.</p>
+        </div>
+    </footer>
+     
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('deleteAccountForm');
+            const submitButton = document.getElementById('submitButton');
+            const spinner = document.getElementById('spinner');
+            const buttonText = document.getElementById('buttonText');
+            const statusMessage = document.getElementById('statusMessage');
+            
+            form.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                // Show loading state
+                submitButton.disabled = true;
+                spinner.style.display = 'inline-block';
+                buttonText.textContent = 'Processing...';
+                statusMessage.style.display = 'none';
+                
+                // Get form data
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const mobile = document.getElementById('mobile').value;
+                
+                // Create payload
+                const payload = {
+                    name: name,
+                    email: email,
+                    mobile: mobile
+                };
+                
+                try {
+                    // Call the API
+                    const response = await fetch('https://buyerapi.rhoselect.com/userauth/deleteaccount', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(payload)
+                    });
+                    
+                    // Process the response
+                    if (response.ok) {
+                        const data = await response.json();
+                        
+                        // Show success message
+                        statusMessage.className = 'status-message success';
+                        statusMessage.textContent = 'Your account deleted request submitted successfully. You will be redirected to the homepage shortly.';
+                        statusMessage.style.display = 'block';
+                        
+                        // Redirect after a delay (optional)
+                        setTimeout(() => {
+                            window.location.href = '/';
+                        }, 5000);
+                    } else {
+                        // Handle error response
+                        const errorData = await response.json();
+                        throw new Error(errorData.message || 'Failed to delete account. Please try again.');
+                    }
+                } catch (error) {
+                    // Show error message
+                    statusMessage.className = 'status-message error';
+                    statusMessage.textContent = error.message || 'An unexpected error occurred. Please try again later.';
+                    statusMessage.style.display = 'block';
+                    
+                    // Reset button
+                    submitButton.disabled = false;
+                } finally {
+                    // Reset loading state
+                    spinner.style.display = 'none';
+                    buttonText.textContent = 'Delete My Account';
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

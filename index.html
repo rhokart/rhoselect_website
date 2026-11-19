@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rhokart - B2B eCom</title>
+    <link rel="icon" type="image/x-icon" href="https://rhokartwebsite.s3.ap-south-1.amazonaws.com/asset/fab_icon.jpg">
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Theme color variables */
+        :root {
+            --primary-color: #1f8505;
+            --primary-dark: #176303;
+            --primary-light: #2aa507;
+            --white: #ffffff;
+            --light-gray: #f5f5f5;
+            --dark-gray: #333333;
+        }
+
+        /* Header styles */
+        header {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        .logo {
+            height: 50px;
+            margin-right: 10px;
+        }
+
+        .site-name {
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-align: left;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+
+        nav ul li a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s, background-color 0.3s;
+            display: flex;
+            align-items: center;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary-color);
+            background-color: var(--white);
+        }
+
+        nav ul li a i {
+            margin-right: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        /* Main content styles */
+        main {
+            flex: 1;
+        }
+
+        .hero {
+            background-color: #F5F5F5;
+            color: #242323;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+
+        .app-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .app-button {
+            display: flex;
+            align-items: center;
+            background-color: var(--dark-gray);
+            color: var(--white);
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .app-button:hover {
+            background-color: #000;
+        }
+
+        .app-button i {
+            font-size: 1.8rem;
+            margin-right: 10px;
+        }
+
+        .app-button .button-text {
+            text-align: left;
+        }
+
+        .app-button .small-text {
+            font-size: 0.7rem;
+            display: block;
+        }
+
+        .app-button .big-text {
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+
+        .features {
+            background-color: #f5f5f5;
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .features-heading {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2rem;
+            color: var(--primary-color);
+        }
+
+        .features-grid {
+            display: grid;  
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background-color: var(--light-gray);
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-card i {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        /* Footer styles */
+        footer {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 2rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid var(--primary-light);
+            padding-bottom: 0.5rem;
+        }
+
+        .footer-section p, .footer-section address {
+            margin-bottom: 0.8rem;
+            font-style: normal;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section ul li a {
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--light-gray);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: var(--white);
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--light-gray);
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--primary-light);
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .logo-container {
+                margin-bottom: 1rem;
+                justify-content: flex-start;
+            }
+
+            nav ul {
+                justify-content: center;
+            }
+
+            nav ul li {
+                margin: 0 0.75rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .app-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo-container">
+                <a href="index.html">
+                <img src="https://rhokartwebsite.s3.ap-south-1.amazonaws.com/asset/rhokart-web-logo-final.png" alt="RhoSelect Logo" class="logo">
+            </a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="https://www.seller.rhokart.com/" target="_blank"><i class="fas fa-store"></i> Sell on Rhokart</a></li>
+                    <li><a href="customerlogin.html"><i class="fas fa-user"></i> Customer Login</a></li>
+                    
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main style="background-color: #f5f5f5;">
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1>Buy all types of building and construction materials here</h1>
+            <p>such as wires, cables, lighting, MCBs, sanitaryware, cement, steel, hardware,
+                accessories, frames, fittings, durables, etc.</p>
+            <h1>One-stop solution for businesses and MSMEs</h1>
+
+            <h2>Download mobile app to buy products</h2>
+            <div class="app-buttons">
+                <a href="#" class="app-button">
+                    <i class="fab fa-google-play"></i>
+                    <div class="button-text">
+                        <span class="small-text">GET IT ON</span>
+                        <span class="big-text">Google Play</span>
+                    </div>
+                </a>
+                <a href="#" class="app-button">
+                    <i class="fab fa-apple"></i>
+                    <div class="button-text">
+                        <span class="small-text">DOWNLOAD ON THE</span>
+                        <span class="big-text">App Store</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features">
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-truck-fast"></i>
+                    <h3>Doorstep Delivery</h3>
+                    <!-- <p>Get your products delivered to your doorstep in record time with our efficient delivery system.</p> -->
+                </div>
+                
+                <div class="feature-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Secure Shopping</h3>
+                    <!-- <p>Shop with confidence knowing that your personal information and transactions are protected.</p> -->
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-tag"></i>
+                    <h3>Quality Products</h3>
+                    <!-- <p>Enjoy exclusive discounts and offers on a wide range of products across various categories.</p> -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="https://rhokartwebsite.s3.ap-south-1.amazonaws.com/policy.html" target="_blank">Privacy Policy</a></li>
+                    <li><a href="https://rhokartwebsite.s3.ap-south-1.amazonaws.com/tc.html" target="_blank">Terms and Conditions</a></li>
+                    <li><a>Careers</a></li>
+                    <li><a href="rhopartner.html">Become a RHOPARTNER</a></li>
+                    <li><a href="deleteaccount.html" target="_blank">Delete user account</a></li>
+                    <li><a href="deletedata.html" target="_blank">Delete user data</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p><i class="fas fa-phone"></i> +91 833 186 2438</p>
+                <p><i class="fas fa-envelope"></i> support@rhoselect.com</p>
+            </div>
+            <div class="footer-section">
+                <h3>Registered Address</h3>
+                <address>
+                    Rhoselect Private Limited.<br>
+                    No. 235, 13th Cross, Hoysala Nagar, 2nd Stage,<br>
+                    Indiranagar, Bangalore- 560038,<br>
+                    Karnataka, India
+                </address>
+                <p>CIN: U46901KA2025PTC199258</p>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; All rights reserved. Rhoselect Private Limited.</p>
+        </div>
+    </footer>
+</body>
+</html>
